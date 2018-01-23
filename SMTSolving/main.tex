@@ -1,4 +1,4 @@
-\documentclass{report}%{llncs2e/llncs}
+\documentclass{article}%{llncs2e/llncs}
 %\documentclass[nocopyrightspace,10pt,twocolumn]{sigplanconf}
 %\documentclass[10pt,twocolumn]{sigplanconf}
 
@@ -20,6 +20,7 @@
 \usepackage{microtype}
 \usepackage{listings}
 \usepackage{float}
+\usepackage{hyperref}
 \lstset{ %
   language=C,
   basicstyle=\footnotesize\ttfamily        % the size of the fonts that are used for the code
@@ -37,34 +38,89 @@
 \setlength{\pdfpageheight}{\paperheight}
 \setlength{\pdfpagewidth}{\paperwidth}
 
-%\conferenceinfo{EuroSys '14}{April 13--16, 2014, Amsterdan, Netherlands} 
-%\copyrightyear{\xspace} 
-%\copyrightdata{} 
-%\doi{nnnnnnn.nnnnnnn}
-
-% Uncomment one of the following two, if you are not going for the 
-% traditional copyright transfer agreement.
-
-%\exclusivelicense                % ACM gets exclusive license to publish, 
-                                  % you retain copyright
-
-%\permissiontopublish             % ACM gets nonexclusive license to publish
-                                  % (paid open-access papers, 
-                                  % short abstracts)
-
-%\titlebanner{banner above paper title}        % These are ignored unless
-%\preprintfooter{short description of paper}   % 'preprint' option specified.
 
 \title{SMT Solving}
 \maketitle
-%\subtitle{dfd }
 
-%\institute{Yale University, New Haven, CT 06510, USA}
+\section{Introduction}
 
-%\acks
+\begin {enumerate}
 
-%Acknowledgments, if needed.
+	\item What is an SMT solver?
+	\begin{enumerate}
+		\item Takes first order logic formulas, determines if they're Sat or Unsat
+		\item Gives a model (solution) if a formula is Sat
+	\end{enumerate}
 
+	\item Uses cases
+	\begin{enumerate}
+		\item Program Verification
+		\item Fuzz testing
+		\item [MORE]
+	\end{enumerate}
+	
+
+\end {enumerate}
+
+\section{Group activity}
+	The $n$-queens problem is to arrange $n$ queens on an $n$ by $n$ chessboard, so that none of the queens can attack each other.
+	As queens can be moved any distance horizontally, vertically, or diagonally this is not easy to do by hand, especially for large values of $n$!
+
+	By writing the problem as a first order logic formula, we can use an SMT solving to find a solution.  For small values of $n$, this is even possible to do by hand.
+
+	You can install z3 by getting the source or binaries at:
+	
+	\url{https://github.com/Z3Prover/z3/wiki}
+	
+	or you can use it online at:
+	
+	\url{https://rise4fun.com/Z3}
+
+[Demo] 
+
+\section{Lab}
+\begin {enumerate}
+
+	\item For large values of $n$, writing the formula for $n$ by hand becomes tedious.
+	In a language of your choice, write a program that takes $n$ as an argument,
+	and generates the corresponding SMT formula.
+
+	\item How many solutions there are for a given value of $n$?
+	Modify your program to find all the solutions to the $n$ queens problem, rather than just one.
+	This requires repeatedly calling the SMT solver, and forcing it to give you a new model from each call.
+	To do this, negate all previous models, and add the negations to your formula. 
+
+	[ADD EXAMPLE HERE]
+
+	You'll know your done when the SMT solver returns Unsat.
+
+	\item [REAL WORLD PROBLEM]
+
+\end {enumerate}
+
+\section{Wrap up}
+
+\begin {enumerate}
+
+\item
+
+\end {enumerate}
+
+\section {Links}
+
+\begin{enumerate}
+	\item z3 - Wiki
+	
+	\url{https://github.com/Z3Prover/z3/wiki}
+
+	\item z3 - Rise4Fun (Online Tool)
+	
+	\url{https://rise4fun.com/Z3}
+
+	\item SMT-LIB Homepage
+	
+	\url{http://smtlib.cs.uiowa.edu/index.shtml}
+\end{enumerate}
 
 \end{document}
 
